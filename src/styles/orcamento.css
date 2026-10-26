@@ -1,0 +1,407 @@
+/* ==========================================================================
+   Orçamento
+   ========================================================================== */
+
+.orcamento {
+  position: relative;
+  background: var(--grafite-2);
+  color: var(--branco);
+}
+
+/* Brilho dourado discreto no topo da seção. */
+.orcamento::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(216, 189, 133, 0.5),
+    transparent
+  );
+}
+
+.orcamento__cabecalho {
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.orcamento__grade {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+/* Formulário ------------------------------------------------------------- */
+
+.formulario {
+  display: grid;
+  gap: 1.35rem;
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--raio);
+  background: var(--branco);
+  box-shadow: var(--sombra-alta);
+}
+
+.formulario__legenda {
+  color: var(--cinza);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.formulario__linha {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.campo {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.campo__rotulo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  color: var(--grafite);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.campo__obrigatorio {
+  color: var(--dourado-forte);
+}
+
+.campo__opcional {
+  color: var(--cinza);
+  font-size: 0.6875rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  background: var(--branco);
+  color: var(--grafite);
+  font-size: 1rem;
+  font-weight: 300;
+  transition:
+    border-color var(--transicao),
+    box-shadow var(--transicao),
+    background-color var(--transicao);
+}
+
+.campo textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.campo select {
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: linear-gradient(45deg, transparent 50%, var(--grafite-3) 50%),
+    linear-gradient(135deg, var(--grafite-3) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) calc(50% + 2px),
+    calc(100% - 0.8rem) calc(50% + 2px);
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: var(--cinza-claro);
+}
+
+.campo input:hover,
+.campo select:hover,
+.campo textarea:hover {
+  border-color: rgba(22, 24, 28, 0.24);
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 3px rgba(176, 141, 79, 0.14);
+  outline: none;
+}
+
+.campo--erro input,
+.campo--erro select,
+.campo--erro textarea {
+  border-color: #b4342c;
+  background: #fdf6f5;
+}
+
+.campo--erro input:focus,
+.campo--erro select:focus,
+.campo--erro textarea:focus {
+  box-shadow: 0 0 0 3px rgba(180, 52, 44, 0.14);
+}
+
+.campo__dica {
+  color: var(--cinza);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.campo__erro {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #a32e26;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.campo__erro::before {
+  content: '!';
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.625rem;
+  font-weight: 500;
+}
+
+/* Medidas ---------------------------------------------------------------- */
+
+.medidas {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  background: var(--marfim);
+}
+
+.medidas__legenda {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-inline: 0.25rem;
+  color: var(--grafite);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.medidas__dica {
+  padding-inline: 0.25rem;
+  color: var(--cinza);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.medidas__linha {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.medidas__campo {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.medidas__campo--unidade {
+  flex: 0 0 84px;
+}
+
+.medidas__x {
+  flex-shrink: 0;
+  padding-bottom: 0.9rem;
+  color: var(--cinza-claro);
+}
+
+/* Ações do formulário ---------------------------------------------------- */
+
+.formulario__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.35rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linha);
+}
+
+.formulario__nota {
+  flex: 1 1 220px;
+  color: var(--cinza);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Colateral: resumo ------------------------------------------------------ */
+
+.orcamento__lateral {
+  position: sticky;
+  top: calc(var(--altura-cabecalho) + 1.5rem);
+}
+
+.resumo {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border: 1px solid rgba(216, 189, 133, 0.22);
+  border-radius: var(--raio);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.resumo__titulo {
+  font-size: 1.5rem;
+  color: var(--branco);
+}
+
+.resumo__aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(216, 189, 133, 0.3);
+  border-left-width: 2px;
+  border-radius: var(--raio);
+  background: rgba(216, 189, 133, 0.08);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+.resumo__aviso strong {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--dourado-claro);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.resumo__aviso-icone {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--dourado-claro);
+}
+
+.resumo__area {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--raio);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.resumo__area:focus-visible {
+  outline-color: var(--dourado-claro);
+}
+
+.resumo__texto {
+  margin: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.resumo__vazio {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.resumo__acoes {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.resumo__confirmacao {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--dourado-claro);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.resumo__contato {
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--linha-clara);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.875rem;
+}
+
+.resumo__rodape {
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--linha-clara);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+/* Layout por tamanho de tela -------------------------------------------- */
+
+@media (min-width: 620px) {
+  .formulario__linha--duas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .formulario__linha--tres {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1040px) {
+  .orcamento__grade {
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario {
+    gap: 1.15rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .medidas__linha {
+    flex-wrap: wrap;
+  }
+
+  .medidas__campo {
+    flex: 1 1 calc(50% - 1rem);
+  }
+
+  .medidas__x {
+    display: none;
+  }
+
+  .medidas__campo--unidade {
+    flex: 1 1 100%;
+  }
+
+  .formulario__acoes .botao {
+    width: 100%;
+  }
+}

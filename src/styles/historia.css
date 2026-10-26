@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Nossa história
+   ========================================================================== */
+
+.historia__grade {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.historia__midia {
+  position: relative;
+}
+
+.historia__figura {
+  position: relative;
+  margin: 0;
+}
+
+/* Moldura dourada deslocada atrás da foto. */
+.historia__figura::after {
+  content: '';
+  position: absolute;
+  inset: -14px -14px 28px 28px;
+  border: 1px solid rgba(176, 141, 79, 0.35);
+  border-radius: var(--raio);
+  pointer-events: none;
+}
+
+.historia__imagem {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-alta);
+  filter: saturate(0.92);
+}
+
+.historia__marca {
+  position: absolute;
+  top: -1.5rem;
+  left: -1.25rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: clamp(96px, 18vw, 132px);
+  height: clamp(96px, 18vw, 132px);
+  border-radius: 50%;
+  background: var(--branco);
+  box-shadow: var(--sombra-suave);
+}
+
+.historia__logo {
+  height: 58%;
+  width: auto;
+}
+
+.historia__credito {
+  margin-top: 1rem;
+  padding-left: 0.15rem;
+  color: var(--cinza);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.historia__assinatura {
+  margin-top: 1.5rem;
+  padding: 0.85rem 0 0.85rem 1.25rem;
+  border-left: 2px solid var(--dourado);
+  color: var(--grafite-3);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.historia__assinatura strong {
+  color: var(--grafite);
+  font-family: var(--fonte-titulo);
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.historia__paragrafo {
+  margin-top: 1.15rem;
+  color: var(--grafite-3);
+  font-size: 1rem;
+  line-height: 1.78;
+}
+
+.historia__paragrafo:first-of-type {
+  margin-top: 1.75rem;
+}
+
+.historia__destaques {
+  display: grid;
+  gap: 1px;
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  background: var(--linha);
+  border-block: 1px solid var(--linha);
+}
+
+.destaque {
+  padding: 1.25rem 0;
+  background: var(--marfim);
+}
+
+.destaque__titulo {
+  margin-bottom: 0.35rem;
+  color: var(--grafite);
+  font-size: 1.25rem;
+}
+
+.destaque__texto {
+  color: var(--grafite-3);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 900px) {
+  .historia__grade {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  }
+
+  .historia__midia {
+    position: sticky;
+    top: calc(var(--altura-cabecalho) + 2.5rem);
+  }
+
+  .historia__destaques {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .destaque {
+    padding: 1.35rem 1.25rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .historia__marca {
+    top: -1rem;
+    left: -0.5rem;
+  }
+
+  .historia__figura::after {
+    inset: -8px -8px 20px 20px;
+  }
+}

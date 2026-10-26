@@ -1,0 +1,376 @@
+/* ==========================================================================
+   JR Mármores e Granitos — base
+   Tokens, reset, tipografia, utilitários e botões.
+   ========================================================================== */
+
+:root {
+  /* Cores ------------------------------------------------------------- */
+  --branco: #ffffff;
+  --marfim: #f5f6f8;
+  --marfim-2: #e9eef3;
+  --grafite: #071e3a;
+  --grafite-2: #0b2b50;
+  --grafite-3: #284565;
+  --cinza: #5c6e82;
+  --cinza-claro: #8294a7;
+  --dourado: #b8a78a;
+  --dourado-forte: #756344;
+  --dourado-claro: #e8dcc5;
+  --linha: rgba(7, 30, 58, 0.12);
+  --linha-clara: rgba(255, 255, 255, 0.14);
+
+  /* Tipografia --------------------------------------------------------- */
+  --fonte-titulo: 'Cormorant Garamond', 'Iowan Old Style', Palatino, Georgia, 'Times New Roman',
+    serif;
+  --fonte-texto: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+
+  /* Medidas ----------------------------------------------------------- */
+  --largura-maxima: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --altura-cabecalho: 84px;
+  --raio: 2px;
+  --raio-g: 6px;
+
+  /* Movimento --------------------------------------------------------- */
+  --transicao: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --sombra-suave: 0 1px 2px rgba(22, 24, 28, 0.04), 0 12px 32px -12px rgba(22, 24, 28, 0.12);
+  --sombra-alta: 0 24px 60px -28px rgba(22, 24, 28, 0.35);
+}
+
+/* Reset ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* Compensa o cabeçalho fixo ao saltar para uma âncora. */
+  scroll-padding-top: calc(var(--altura-cabecalho) + 16px);
+}
+
+body {
+  margin: 0;
+  background: var(--branco);
+  color: var(--grafite);
+  font-family: var(--fonte-texto);
+  font-size: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+  /* `clip` evita overflow horizontal sem criar um contêiner de rolagem,
+     o que quebraria o `position: sticky` das seções laterais. */
+  overflow-x: clip;
+}
+
+body.menu-aberto {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--fonte-titulo);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--dourado-forte);
+  outline-offset: 3px;
+}
+
+/* Layout ----------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.pagina {
+  min-height: 100vh;
+}
+
+main {
+  display: block;
+}
+
+.secao {
+  padding-block: clamp(4.5rem, 9vw, 8.5rem);
+  scroll-margin-top: calc(var(--altura-cabecalho) + 8px);
+}
+
+.secao--clara {
+  background: var(--marfim);
+}
+
+.secao__titulo {
+  max-width: 18ch;
+  font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.6rem);
+  color: var(--grafite);
+}
+
+.secao__titulo--claro {
+  color: var(--branco);
+}
+
+.secao__texto {
+  max-width: 62ch;
+  margin-top: 1.25rem;
+  color: var(--grafite-3);
+  font-size: clamp(1rem, 0.97rem + 0.2vw, 1.125rem);
+}
+
+.secao__texto--claro {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Cabeçalho de seção ----------------------------------------------------- */
+
+.cabecalho-secao {
+  max-width: 68ch;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.etiqueta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--dourado-forte);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.etiqueta--clara {
+  color: var(--dourado-claro);
+}
+
+.etiqueta__linha {
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* Botões ----------------------------------------------------------------- */
+
+.botao {
+  --botao-altura: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: var(--botao-altura);
+  padding: 0.85rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: var(--raio);
+  background: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--transicao),
+    border-color var(--transicao),
+    color var(--transicao),
+    transform var(--transicao);
+}
+
+.botao--grande {
+  --botao-altura: 58px;
+  padding-inline: 2.25rem;
+}
+
+.botao--bloco {
+  width: 100%;
+}
+
+.botao__icone {
+  transition: transform var(--transicao);
+}
+
+.botao:hover .botao__icone {
+  transform: translateX(4px);
+}
+
+.botao--ouro {
+  background: var(--dourado-claro);
+  border-color: var(--dourado-claro);
+  color: var(--grafite);
+}
+
+.botao--ouro:hover {
+  background: var(--branco);
+  border-color: var(--branco);
+}
+
+.botao--escuro {
+  background: var(--grafite);
+  border-color: var(--grafite);
+  color: var(--branco);
+}
+
+.botao--escuro:hover {
+  background: var(--grafite-3);
+  border-color: var(--grafite-3);
+}
+
+.botao--contorno-claro {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--branco);
+}
+
+.botao--contorno-claro:hover {
+  border-color: var(--dourado-claro);
+  background: rgba(216, 189, 133, 0.12);
+  color: var(--branco);
+}
+
+.botao--contorno-ouro {
+  border-color: rgba(216, 189, 133, 0.5);
+  color: var(--dourado-claro);
+}
+
+.botao--contorno-ouro:hover {
+  border-color: var(--dourado-claro);
+  background: rgba(216, 189, 133, 0.1);
+}
+
+.botao--fantasma {
+  border-color: var(--linha);
+  color: var(--grafite);
+}
+
+.botao--fantasma:hover {
+  border-color: var(--dourado);
+  background: rgba(176, 141, 79, 0.08);
+}
+
+.botao:active {
+  transform: translateY(1px);
+}
+
+/* Logomarca -------------------------------------------------------------- */
+
+.logo {
+  width: auto;
+  height: 46px;
+}
+
+/* Utilitários ------------------------------------------------------------ */
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pular-para-conteudo {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--raio);
+  background: var(--grafite);
+  color: var(--branco);
+  font-size: 0.8125rem;
+  transform: translate(-50%, -200%);
+  transition: transform var(--transicao);
+}
+
+.pular-para-conteudo:focus-visible {
+  transform: translate(-50%, 0);
+}
+
+/* Responsivo ------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  :root {
+    --altura-cabecalho: 72px;
+  }
+
+  .botao {
+    /* Alvo de toque confortável no celular. */
+    min-height: 52px;
+  }
+
+  .botao--grande {
+    min-height: 58px;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -4,7 +4,7 @@ dist-ssr
 *.local
 .DS_Store
 .vite
-data/
+/data/
 
 # Variáveis de ambiente (nenhum segredo vai para o repositório)
 .env
